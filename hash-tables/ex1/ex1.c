@@ -23,6 +23,29 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
   }
   printf("]\n");
 
+  // loop over the origional array and check if there is a
+  // valid response from the HT for the index of the difference
+
+  for (int i = 0; i < length; i++)
+  {
+    if (hash_table_retrieve(ht, limit - weights[i]) != -1)
+    {
+      int ht_response = hash_table_retrieve(ht, limit - weights[i]);
+      answer->index_1 = i;
+      answer->index_2 = ht_response;
+      printf("%d + %d meet the limit %d\n", weights[answer->index_1], weights[answer->index_2], limit);
+      return answer;
+    }
+  }
+
+  // WORKING RESPONSE LOOP SHOWING THE INDEX OF EACH ITEM IN THE ARR//
+  // for (int i = 0; i < length; i++)
+  // {
+  //   // printf("WEIGHT %d\n", weights[i]);
+  //   int ht_response = hash_table_retrieve(ht, weights[i]);
+  //   printf("HT RESPONSE %d\n", ht_response);
+  // }
+
   // WORKING LOOP GETTING ALL THE RESULTS FROM HT//
   // for (int i = 0; i < ht->capacity; i++)
   // {
