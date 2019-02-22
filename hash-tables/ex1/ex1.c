@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+// #include <string.h>
 #include "hashtable.h"
 #include "ex1.h"
 
@@ -14,11 +14,23 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 
   // test code to see what I am working with
   printf("ARRAY LENGTH %d\n", length);
+  printf("weights = [");
   for (int i = 0; i < length; i++)
   {
-    printf("WEIGHT %d\n", weights[i]);
+    // printf("WEIGHT %d\n", weights[i]);
+    printf("%d,", weights[i]);
     hash_table_insert(ht, weights[i], i);
   }
+  printf("]\n");
+
+  // WORKING LOOP GETTING ALL THE RESULTS FROM HT//
+  // for (int i = 0; i < ht->capacity; i++)
+  // {
+  //   if (ht->storage[i] != NULL)
+  //   {
+  //     printf("HASH TABLE INDEX %d KEY %d VALUE %d\n", i, ht->storage[i]->key, ht->storage[i]->value);
+  //   }
+  // }
 
   // for (int i = 0; weights[i] != NULL; i++)
   // {
