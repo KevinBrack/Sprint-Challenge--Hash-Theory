@@ -13,15 +13,15 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
   Answer *answer = malloc(sizeof(Answer));
 
   // test code to see what I am working with
-  printf("ARRAY LENGTH %d\n", length);
-  printf("weights = [");
+  // printf("ARRAY LENGTH %d\n", length); // <--debugging
+  // printf("weights = ["); // <--debugging
   for (int i = 0; i < length; i++)
   {
     // printf("WEIGHT %d\n", weights[i]);
-    printf("%d,", weights[i]);
+    // printf("%d,", weights[i]); <--debugging
     hash_table_insert(ht, weights[i], i);
   }
-  printf("]\n");
+  // printf("]\n"); // <--debugging
 
   // loop over the origional array and check if there is a
   // valid response from the HT for the index of the difference
@@ -31,41 +31,22 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
     if (hash_table_retrieve(ht, limit - weights[i]) != -1)
     {
       int ht_response = hash_table_retrieve(ht, limit - weights[i]);
-      answer->index_1 = i;
-      answer->index_2 = ht_response;
-      printf("%d + %d meet the limit %d\n", weights[answer->index_1], weights[answer->index_2], limit);
+      if (i > ht_response)
+      {
+        answer->index_1 = i;
+        answer->index_2 = ht_response;
+      }
+      else
+      {
+        answer->index_1 = ht_response;
+        answer->index_2 = i;
+      }
+
+      // printf("%d + %d meet the limit %d\n", weights[answer->index_1], weights[answer->index_2], limit); // <--debugging
+      // printf("Indexes used {%d,%d}\n", answer->index_1, answer->index_2);
       return answer;
     }
   }
-
-  // WORKING RESPONSE LOOP SHOWING THE INDEX OF EACH ITEM IN THE ARR//
-  // for (int i = 0; i < length; i++)
-  // {
-  //   // printf("WEIGHT %d\n", weights[i]);
-  //   int ht_response = hash_table_retrieve(ht, weights[i]);
-  //   printf("HT RESPONSE %d\n", ht_response);
-  // }
-
-  // WORKING LOOP GETTING ALL THE RESULTS FROM HT//
-  // for (int i = 0; i < ht->capacity; i++)
-  // {
-  //   if (ht->storage[i] != NULL)
-  //   {
-  //     printf("HASH TABLE INDEX %d KEY %d VALUE %d\n", i, ht->storage[i]->key, ht->storage[i]->value);
-  //   }
-  // }
-
-  // for (int i = 0; weights[i] != NULL; i++)
-  // {
-  //   hash_table_insert(ht, weights[i], i);
-  // }
-  // for (int i = 0; i < ht->capacity - 1; i++)
-  // {
-  //   if (ht->storage[i] != NULL)
-  //   {
-  //     printf("HASH TABLE INDEX %d KEY %s VALUE %s\n", ht->storage[i], ht->storage[i]->key, ht->storage[i]->value);
-  //   }
-  // }
 
   return NULL;
 }
