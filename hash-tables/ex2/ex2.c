@@ -33,11 +33,6 @@ char **reconstruct_trip(Ticket **tickets, int length)
     route[i] = current_destination;
   }
 
-  // debugging
-  // for (int i = 0; i < length; i++)
-  // {
-  //   printf("route %d %s\n", i, route[i]);
-  // }
   destroy_hash_table(ht);
 
   return route;

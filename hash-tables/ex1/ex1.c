@@ -12,16 +12,10 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
   HashTable *ht = create_hash_table(16);
   Answer *answer = malloc(sizeof(Answer));
 
-  // test code to see what I am working with
-  // printf("ARRAY LENGTH %d\n", length); // <--debugging
-  // printf("weights = ["); // <--debugging
   for (int i = 0; i < length; i++)
   {
-    // printf("WEIGHT %d\n", weights[i]);
-    // printf("%d,", weights[i]); <--debugging
     hash_table_insert(ht, weights[i], i);
   }
-  // printf("]\n"); // <--debugging
 
   // loop over the origional array and check if there is a
   // valid response from the HT for the index of the difference
@@ -42,8 +36,6 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
         answer->index_2 = i;
       }
 
-      // printf("%d + %d meet the limit %d\n", weights[answer->index_1], weights[answer->index_2], limit); // <--debugging
-      // printf("Indexes used {%d,%d}\n", answer->index_1, answer->index_2);
       destroy_hash_table(ht);
       return answer;
     }
