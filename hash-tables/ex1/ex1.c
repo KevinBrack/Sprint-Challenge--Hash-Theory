@@ -6,22 +6,18 @@
 
 // Changing name of struct to not conflict with
 // the function name
-typedef struct Result
-{
-  int index_1;
-  int index_2;
-} Result;
 
 Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 {
-  // HashTable *ht = create_hash_table(16);
-  Result *result = malloc(sizeof(Result));
+  HashTable *ht = create_hash_table(16);
+  Answer *answer = malloc(sizeof(Answer));
 
   // test code to see what I am working with
-  for (int i = 0; weights[i]; i++)
+  printf("ARRAY LENGTH %d\n", length);
+  for (int i = 0; i < length; i++)
   {
     printf("WEIGHT %d\n", weights[i]);
-    // hash_table_insert(ht, weights[i], i);
+    hash_table_insert(ht, weights[i], i);
   }
 
   // for (int i = 0; weights[i] != NULL; i++)
