@@ -44,6 +44,7 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 
       // printf("%d + %d meet the limit %d\n", weights[answer->index_1], weights[answer->index_2], limit); // <--debugging
       // printf("Indexes used {%d,%d}\n", answer->index_1, answer->index_2);
+      destroy_hash_table(ht);
       return answer;
     }
   }

@@ -38,6 +38,7 @@ char **reconstruct_trip(Ticket **tickets, int length)
   // {
   //   printf("route %d %s\n", i, route[i]);
   // }
+  destroy_hash_table(ht);
 
   return route;
 }
