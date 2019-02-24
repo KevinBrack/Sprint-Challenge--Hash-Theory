@@ -37,6 +37,7 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
       }
 
       destroy_hash_table(ht);
+      printf("the weights %d and %d make up the limit %d\n", weights[answer->index_1], weights[answer->index_2], limit);
       return answer;
     }
   }
